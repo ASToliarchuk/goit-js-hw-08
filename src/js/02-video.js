@@ -16,7 +16,7 @@ function timeplaying(event) {
 
   console.log(`Час перегляду ${currentTime} секунд`);
 }
-// player.setCurrentTime(JSON.parse(localStorage.getItem(CURRENT_TIME)));
+
 const timeLS = localStorage.getItem(storageKey);
 if (timeLS) {
   const savedTime = JSON.parse(timeLS);
