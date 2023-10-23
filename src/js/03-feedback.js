@@ -3,11 +3,14 @@ import throttle from 'lodash.throttle';
 const STORAGE_KEY = 'feedback-form-state';
 const formRef = document.querySelector('.feedback-form');
 const textareaRef = document.querySelector('.feedback-form textarea');
+const inputRef = document.querySelector('.feedback-form input');
+
 let formData = {};
 
 formRef.addEventListener('submit', formSubmit);
 textareaRef.addEventListener('input', throttle(textareaInput, 500));
 formRef.addEventListener('input', throttle(savedForm, 500));
+
 
 returnTextarea();
 
@@ -18,6 +21,12 @@ function savedForm(event) {
 
 function formSubmit(event) {
   event.preventDefault();
+
+if (inputRef.value.trim() === '' || textareaRef.value.trim() === '') {
+    alert('All fields must be filled!');
+    return;
+  }
+
   console.log(formData);
   event.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
